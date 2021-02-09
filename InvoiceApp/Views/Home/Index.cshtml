@@ -1,0 +1,122 @@
+﻿@model InitialWrapper
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="card">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-8">
+                        @if (Model.Status == 1)
+                        {
+                            <span class="badge badge-success">PAID</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger">UNPAID</span>
+                        }
+                        <strong>BILL</strong>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        <img src="" alt="company logo" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                Please find attached your invoice. Thank you for timely payment.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Invoice No</label>
+                        <div class="input-group">
+                            <span class="badge badge-info">
+                                <h5>
+                                    <strong>#</strong>
+                                </h5>
+                            </span>
+                            <div class="form-outline">
+                                <input type="text" value="@Model.Response.InitialInvoiceNo" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Language</label>
+                        <br />
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option value="0">--Choose Language--</option>
+                                @if (Model.Response.Dropdowns.Language != null)
+                                {
+                                    @foreach (var lang in Model.Response.Dropdowns.Language)
+                                    {
+                                        <option value="@lang.KeyId">@lang.KeyName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Language</label>
+                        <br />
+                        <div class="input-group">
+                            <select class="form-control">
+                                <option value="0">--Choose Currency--</option>
+                                @if (Model.Response.Dropdowns.Currency != null)
+                                {
+                                    @foreach (var curr in Model.Response.Dropdowns.Currency)
+                                    {
+                                        <option value="@curr.KeyId">@curr.KeyName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group m-2 text-left">
+                            <label class="text- font-weight-bold text-left">From<span class="text-danger">*</span></label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                        <div class="form-group m-2 text-left">
+                            <label class="text- font-weight-bold text-left">To<span class="text-danger">*</span></label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <div class="form-group m-2 text-left">
+                            <label class="text- font-weight-bold text-left">Date<span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" />
+                        </div>
+                        <div class="form-group m-2 text-left">
+                            <label class="text- font-weight-bold text-left">Invoice Due<span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" />
+                        </div>
+                        <div class="form-group m-2 text-left">
+                            <label class="text- font-weight-bold text-left">Purchase Order Number<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+            </div>
+        }
+        </div>
+</div>
